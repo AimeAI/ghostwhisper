@@ -1,5 +1,3 @@
-// frontend/src/App.jsx
-
 import React, { useState } from 'react';
 import PersonaBuilder from './components/PersonaBuilder';
 import ChatPanel from './components/ChatPanel';
