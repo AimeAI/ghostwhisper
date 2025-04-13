@@ -4,12 +4,12 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: '.', // Ensure this is the root of your project
-  publicDir: 'public', // Points to the 'public' folder where index.html is
+  root: './',  // root is set to the current directory (this is correct)
+  publicDir: 'public', // Points to 'public' where static files (like index.html) are stored
   build: {
-    outDir: 'dist', // The output build directory
+    outDir: 'dist',
     rollupOptions: {
-      input: path.resolve(__dirname, 'public', 'index.html'), // Explicitly point to the index.html in the public folder
+      input: path.resolve(__dirname, 'public', 'index.html'), // Explicitly pointing to public/index.html
     },
   },
 });
