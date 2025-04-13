@@ -3,12 +3,12 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  root: './', // Root is the project root
-  publicDir: 'public', // Vite looks in the public directory for index.html
+  root: './', // Root is the project root (where index.html and main.jsx are located)
+  publicDir: 'public', // This points Vite to the public directory for static files
   build: {
-    outDir: 'dist', // Output folder for production build
+    outDir: 'dist', // This will be the output directory for production
     rollupOptions: {
-      input: './public/index.html', // Explicit entry for index.html
+      input: './public/index.html', // Entry point for the Vite build
     },
   },
 });
