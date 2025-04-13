@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import PersonaBuilder from './components/PersonaBuilder';
+import ChatPanel from './components/ChatPanel';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [persona, setPersona] = useState(null);
+  const [docUploaded, setDocUploaded] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-black text-white flex flex-col md:flex-row font-sans">
+      <div className="w-full md:w-1/3 p-6 border-r border-purple-900 bg-[#0a0a0a]">
+        <h1 className="text-2xl font-bold mb-4 text-purple-400">Ghost Whisper</h1>
+        <PersonaBuilder
+          onPersonaReady={setPersona}
+          onUploadComplete={() => setDocUploaded(true)}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="w-full md:w-2/3 p-6">
+        {persona && docUploaded ? (
+          <ChatPanel persona={persona} />
+        ) : (
+          <div className="text-purple-300 opacity-50 mt-24 text-center">
+            <p className="text-xl">👻 Your Ghost Persona will appear here once it's created.</p>
+            <p className="text-sm mt-2">Fill out the form and upload a document to begin.</p>
+          </div>
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
