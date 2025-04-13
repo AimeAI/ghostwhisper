@@ -1,14 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: '.', // Root is the current directory (project root)
-  publicDir: 'public', // Points to the 'public' folder where static files like index.html are
+  root: '.', // Ensure this is the root of your project
+  publicDir: 'public', // Points to the 'public' folder where index.html is
   build: {
     outDir: 'dist', // The output build directory
     rollupOptions: {
-      input: './public/index.html', // Explicitly tell Vite to use the index.html inside the public folder
+      input: path.resolve(__dirname, 'public', 'index.html'), // Explicitly point to the index.html in the public folder
     },
   },
 });
